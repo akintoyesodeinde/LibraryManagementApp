@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Category>
+
+<a class="btn btn-success mt-5" style="margin: 10px" asp-controller="Category" asp-action="Create">Create new Category</a>
+
+<div class="row">
+    @foreach (var category in Model)
+    {
+        @Html.Partial("CategoryPartial", category)
+    }
+</div>

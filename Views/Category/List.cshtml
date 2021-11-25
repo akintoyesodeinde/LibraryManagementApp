@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Category>
+
+<a class="btn btn-success mt-5" style="margin: 10px" asp-controller="Category" asp-action="Create">Create new Category</a>
+
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Books count</th>
+            <th>View book list</th>
+            <th>Edit category</th>
+            <th>Delete category</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.CategoryId</td>
+                <td>@category.Name</td>
+                <td>@category.Books?.Count </td>
+                @if (category.Books?.Count == 0)
+                {
+                    <td><a class="btn btn-default" asp-area="" >View book list</a></td>
+                }
+                else
+                {
+                    <td><a class="btn btn-info" asp-area="" asp-controller="Book" asp-action="List" asp-route-authorId="@category.CategoryId">View book list</a></td>
+                }
+                <td><a class="btn btn-info" asp-area="" asp-controller="Category" asp-action="Update" asp-route-id="@category.CategoryId">Edit</a></td>
+                <td><a class="btn btn-danger" asp-area="" asp-controller="Category" asp-action="Delete" asp-route-id="@category.CategoryId">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
